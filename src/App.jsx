@@ -7,11 +7,8 @@ import ListadoPacientes from "./components/ListadoPacientes"
 function App() {
 
   const [pacientes, setPacientes] = useState([]);
-  //BTN EDITAR
   const [paciente, setPaciente] = useState({});
 
-  //useEffect PARA MANTENER LOS DATOS DEL LOCAL STORAGE
-  //El orden de los useEffect es importante
   useEffect(() => {
     const obtenerLS = () => {
       const pacientesLS = JSON.parse(localStorage.getItem('pacientes')) ?? [];
@@ -24,7 +21,6 @@ function App() {
     localStorage.setItem('pacientes', JSON.stringify(pacientes));
   }, [pacientes]);
 
-  //BTN ELIMINAR
   const eliminarPaciente = (id) => {
     const pacientesActualizados = pacientes.filter(paciente => paciente.id !== id);
     setPacientes(pacientesActualizados);
