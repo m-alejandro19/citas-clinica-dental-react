@@ -2,7 +2,6 @@ import {useState, useEffect} from 'react';
 
 import Alerta from './Alerta'
 
-                    // PROPS VIENEN DESDE App.jsx
 const Formulario = ({pacientes, setPacientes, paciente, setPaciente}) => {
 
   const [nombres, setNombres] = useState('');
@@ -15,7 +14,6 @@ const Formulario = ({pacientes, setPacientes, paciente, setPaciente}) => {
 
   useEffect(()=>{
     if(Object.keys(paciente).length>0){
-      //DATOS QUE ESTAN EN MEMORIA
       setNombres(paciente.nombres);
       setApellidos(paciente.apellidos);
       setEmail(paciente.email);
@@ -24,7 +22,6 @@ const Formulario = ({pacientes, setPacientes, paciente, setPaciente}) => {
     } 
   },[paciente]);
 
-  //FUNCION QUE GENERA UN ID UNICO
   const generarId = () => {
     const random = Math.random().toString(36).substring(2);
     const fecha = Date.now().toString(36);
@@ -40,7 +37,6 @@ const Formulario = ({pacientes, setPacientes, paciente, setPaciente}) => {
     }
     setError(false);
 
-    //OBJETO NUEVO DE PACIENTES
     const objetoPaciente = {
         nombres,
         apellidos,
@@ -50,21 +46,16 @@ const Formulario = ({pacientes, setPacientes, paciente, setPaciente}) => {
     }
 
     if(paciente.id){
-      //EDITANDO UN REGISTRO
       objetoPaciente.id = paciente.id;
       
       const pacientesActualizados = pacientes.map(pacienteState => pacienteState.id === paciente.id ? objetoPaciente : pacienteState)
       setPacientes(pacientesActualizados);
 
-      //LIMPIA EN MEMORIA EL HOOK
       setPaciente({})
     } else {
-      //NUEVO REGISTRO
       objetoPaciente.id = generarId();
       setPacientes([...pacientes, objetoPaciente]);
     }
-
-    //REINICIAR EL FORMULARIO
     setNombres('');
     setApellidos('');
     setEmail('');

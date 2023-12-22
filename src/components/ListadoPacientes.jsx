@@ -2,12 +2,10 @@ import React from 'react'
 import Paciente from './Paciente'
 import { useEffect } from 'react'
 
-                        //prop viene desde el App.jsx
 const ListadoPacientes = ({pacientes, setPaciente, eliminarPaciente}) => {
   
   return (
     <div className='mb-10 h-screen md:overflow-y-scroll lg:mr-5'>
-      {/* RETORNA 0 CUANDO NO HAY PACIENTES 1 CUANDO HAY PACIENTES */}
       {pacientes && pacientes.length ? (
         <>
           <h2 className='font-black text-3xl text-center'>Listado pacientes</h2>
